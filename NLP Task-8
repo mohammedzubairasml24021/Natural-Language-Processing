@@ -1,0 +1,126 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "48e6cdb7-a6c9-4bf0-bd68-7fd76e552c1f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# -------------------Text Classification Using Naive Bayes----------------------\n",
+    "# Naive Bayes is a supervised machine learning algorithm used to classify text documents into predefined categories.\n",
+    "#It is based on Bayes Theorem and assumes that the words in a document are independent of each other."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "9f575c87-8fdc-40a1-b135-a74510f79f07",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Text: I love Amet\n",
+      "Actual Class: Positive\n",
+      "Predicted Class: Positive\n",
+      "----------------------\n",
+      "Text: Amet is good\n",
+      "Actual Class: Positive\n",
+      "Predicted Class: Positive\n",
+      "----------------------\n",
+      "Text: I hate faceprep\n",
+      "Actual Class: Negative\n",
+      "Predicted Class: Negative\n",
+      "----------------------\n",
+      "Text: faceprep is terrible\n",
+      "Actual Class: Negative\n",
+      "Predicted Class: Negative\n",
+      "----------------------\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.feature_extraction.text import CountVectorizer\n",
+    "from sklearn.naive_bayes import MultinomialNB\n",
+    "\n",
+    "# Training data\n",
+    "texts = [\n",
+    "    \"I love Amet\",\n",
+    "    \"Amet is good\",\n",
+    "    \"I hate faceprep\",\n",
+    "    \"faceprep is terrible\"\n",
+    "]\n",
+    "\n",
+    "# Labels\n",
+    "labels = [\n",
+    "    \"Positive\",\n",
+    "    \"Positive\",\n",
+    "    \"Negative\",\n",
+    "    \"Negative\"\n",
+    "]\n",
+    "\n",
+    "# Convert text into numbers\n",
+    "vectorizer = CountVectorizer()\n",
+    "X = vectorizer.fit_transform(texts)\n",
+    "\n",
+    "# Create and train Naive Bayes model\n",
+    "model = MultinomialNB()\n",
+    "model.fit(X, labels)\n",
+    "\n",
+    "# Predict each training text\n",
+    "predictions = model.predict(X)\n",
+    "\n",
+    "# Display output for each training data\n",
+    "for text, actual, predicted in zip(texts, labels, predictions):\n",
+    "    print(\"Text:\", text)\n",
+    "    print(\"Actual Class:\", actual)\n",
+    "    print(\"Predicted Class:\", predicted)\n",
+    "    print(\"----------------------\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "b8fb4e6f-35c2-485c-9721-b0c000ea2784",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# In Naive Bayes text classification, the training text is first converted into numerical features using CountVectorizer.\n",
+    "# The Multinomial Naive Bayes algorithm learns the relationship between words and their classes.\n",
+    "# When a new text is given, it is converted into numerical features and\n",
+    "# the trained model predicts its class based on probability."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "749dfa42-c864-4704-878a-627251b85d38",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
